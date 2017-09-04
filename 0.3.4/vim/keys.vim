@@ -85,8 +85,8 @@ nmap <buffer> )                    <Plug>SexpNext
 
 " Sexp Move Back:       swap this and previous s-exp
 " Sexp Move Forward:    swap this and next s-exp
-nmap <buffer> {                    <Plug>SexpMoveBack
-nmap <buffer> }                    <Plug>SexpMoveForward
+" nmap <buffer> {                    <Plug>SexpMoveBack
+" nmap <buffer> }                    <Plug>SexpMoveForward
 
 " Sexp Comment:      comment all the way from the top level
 nmap <buffer> <LocalLeader>sc      <Plug>SexpComment

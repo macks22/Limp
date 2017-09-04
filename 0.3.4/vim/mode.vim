@@ -27,10 +27,10 @@ fun! LimpMode_start()
     "-------------------------------------------------------------------
     let g:lisp_rainbow=1
 
-    set t_Co=256
-    if !exists("g:colors_name")
-        colorscheme desert256
-    endif
+    " set t_Co=256
+    " if !exists("g:colors_name")
+    "     colorscheme desert256
+    " endif
 
     hi Brackets      ctermbg=53 ctermfg=white 
     hi BracketsBlock ctermbg=235 guibg=lightgray
@@ -82,12 +82,31 @@ augroup END
 syntax on
 setlocal nocompatible nocursorline
 setlocal lisp syntax=lisp
-setlocal ls=2 bs=2 si et sw=2 ts=2 tw=0 
+setlocal laststatus=2  " show status line even when only one window is shown
+setlocal backspace=2  " allows backspacing with backspace character
+setlocal expandtab  "replace tab with spaces
+setlocal shiftwidth=2 tabstop=2 textwidth=0
 setlocal statusline=%<%f\ \(%{LimpBridge_connection_status()}\)\ %h%m%r%=%-14.(%l,%c%V%)\ %P\ of\ %L\ \(%.45{getcwd()}\)
 setlocal iskeyword=&,*,+,45,/,48-57,:,<,=,>,@,A-Z,a-z,_
-setlocal cpoptions=-mp
 setlocal foldmethod=marker foldmarker=(,) foldminlines=1
 
+set lispwords+=defgeneric,block,catch,with-gensyms
+
+"-----------
+"Taken from the bundled lisp.vim file in VIM
+"(/usr/share/vim/vim72/ftplugin/lisp.vim)
+setl comments=:;
+setl define=^\\s*(def\\k*
+setl formatoptions-=t
+setl iskeyword+=+,-,\*,/,%,<,=,>,:,$,?,!,@-@,94
+setl comments^=:;;;,:;;,sr:#\|,mb:\|,ex:\|#
+setl formatoptions+=croql
+"-----------
+
+" This controls the behavior of the '=' option for reformatting
+setl equalprg=$HOME/sbcl/bin/lispindent.lisp
+" This controls the behavior of the 'gq' option for reformatting
+setl formatprg=$HOME/sbcl/bin/lispindent.lisp
 
 " This allows gf and :find to work. Fix path to your needs
 setlocal suffixesadd=.lisp,cl path=/home/mikael/hacking/lisp/**

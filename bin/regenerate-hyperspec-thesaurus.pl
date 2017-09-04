@@ -1,6 +1,7 @@
 #!/usr/bin/perl
 
-$BASEDIR = "/usr/share/doc/hyperspec";
+$HOME = $ENV{"HOME"};
+$BASEDIR = "$HOME/sbcl/hyperspec";
 $INPUT = "$BASEDIR/Front/X_AllSym.htm";
 $MAX_LINE = 510;
 $MIN_WORD_LEN = 3;

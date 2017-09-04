@@ -8,8 +8,8 @@
 
 # full path to location of the SBCL binary and its default core.
 # default is to guess the correct location, which usually gets it right.
-SBCL=
-SBCL_CORE=
+SBCL=/Users/vru959/sbcl/bin/sbcl
+SBCL_CORE=/Users/vru959/sbcl/lib/sbcl/sbcl.core
 
 # ----------------------------
 
@@ -146,10 +146,12 @@ if [[ "$DO_BOOT" == "1" ]]; then
     # do we have rlwrap? very useful utility
     RLWRAP=""
     BREAK_CHARS="\"#'(),;\`\\|!?[]{}"
-    [[ `which rlwrap` ]] && RLWRAP="rlwrap -b $BREAK_CHARS"
+    [[ `which rlwrap` ]] && RLWRAP="rlwrap -pgreen -r -s 2000 -i -c -b $BREAK_CHARS -f $LIMPDIR/vim/thesaurus"
 
     # command to disable aliases/functions
+    echo "$RLWRAP $SBCL --noinform $core"
     echo -e "Welcome to Limp. May your journey be pleasant.\n"
+
 	$RLWRAP $SBCL --noinform $core
 
     # cleanup 
